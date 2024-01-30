@@ -1,0 +1,19 @@
+package Week2.Day4;
+
+public class dup1 {
+    public static void main(String[] args) {
+        int[] inputArray = {1, 4, 3, 2, 8, 6, 7};
+        int n = inputArray.length + 1;
+
+        int expectedSum = n * (n + 1) / 2;
+        int actualSum = 0;
+
+        for (int num : inputArray) {
+            actualSum += num;
+        }
+
+        int missingElement = expectedSum - actualSum;
+
+        System.out.println("Missing element is: " + missingElement);
+    }
+}
