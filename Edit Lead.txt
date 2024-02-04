@@ -1,0 +1,51 @@
+package Week2.Day5;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class EditLead {
+
+	public static void main(String[] args) throws InterruptedException {
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/control/main");
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//input[@name=\"USERNAME\"]")).sendKeys("demosalesmanager");
+		driver.findElement(By.xpath("//input[@name=\"PASSWORD\"]")).sendKeys("crmsfa");
+		driver.findElement(By.xpath("//input[@class=\"decorativeSubmit\"]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),\" CRM/SFA\")]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),\"Leads\")]")).click();
+		driver.findElement(By.linkText("Create Lead")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@id='createLeadForm_companyName']")).sendKeys("Superdry");
+		driver.findElement(By.xpath("//input[@id='createLeadForm_firstName']")).sendKeys("Mikey");
+		driver.findElement(By.xpath("//input[@id='createLeadForm_lastName']")).sendKeys("Donald");
+		driver.findElement(By.xpath("//input[@id='createLeadForm_firstNameLocal']")).sendKeys("SD");
+		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("Admin");
+		driver.findElement(By.id("createLeadForm_description")).sendKeys("This is super Company");
+		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("ccc@gmail.com");
+		WebElement dropelements = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
+		Select sam = new Select (dropelements);
+		sam.selectByVisibleText("New York");
+		driver.findElement(By.xpath("//input[@value='Create Lead']")).click();
+		driver.findElement(By.linkText("Edit")).click();
+		driver.findElement(By.id("updateLeadForm_description")).clear();
+		driver.findElement(By.id("updateLeadForm_importantNote")).sendKeys("noteas are important");
+		driver.findElement(By.name("submitButton")).click();
+		String screen = driver.getTitle();
+		if (screen.contains("View Lead")) {
+			
+			System.out.println("Page is load");
+		}
+		else
+		{
+			System.out.println("Page is not load");
+		}
+		driver.close();
+		
+		
+
+	}
+
+}
